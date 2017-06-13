@@ -4,8 +4,11 @@ class SessionsController < ApplicationController
 
   def create
     session[:name] = params[:name]
-    # byebug
-    redirect_to '/'
+    if session[:name].nil? || session[:name].empty?
+      redirect_to login_path
+    else
+      redirect_to '/'
+    end
   end
 
   def destroy
